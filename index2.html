@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash on Delivery</title>
+    <style>
+        /* === BASE STYLES === */
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --text: #0f172a;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --error: #ef4444;
+            --success: #10b981;
+        }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            line-height: 1.5;
+        }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 60px 0; }
+        h1, h2, h3 { margin-top: 0; }
+        
+        /* === HEADER === */
+        header {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+        .nav-link { color: var(--text-light); font-weight: 500; transition: color 0.2s; }
+        .nav-link:hover { color: var(--primary); }
+
+        /* === HERO === */
+        .hero { text-align: center; background: white; padding-top: 80px; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 15px; }
+        .hero p { font-size: 1.1rem; color: var(--text-light); margin-bottom: 30px; }
+        
+        .btn {
+            background: var(--primary); color: white; border: none;
+            padding: 12px 24px; font-size: 1.1rem; border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: background 0.2s;
+            display: inline-block;
+        }
+        .btn:hover { background: var(--primary-hover); }
+        .btn:disabled { background: var(--text-light); cursor: not-allowed; }
+
+        /* === CARDS === */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .card {
+            background: white; padding: 20px; border-radius: 8px;
+            border: 1px solid var(--border); text-align: center;
+        }
+        .card h3 { margin-bottom: 10px; color: var(--primary); }
+        
+        /* === ORDER FORM & SUMMARY === */
+        .form-section { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .summary-box { background: #f1f5f9; padding: 15px; border-radius: 6px; margin-bottom: 25px; border: 1px solid var(--border); }
+        .summary-box h3 { margin-bottom: 10px; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-weight: bold; font-size: 1.2rem; color: var(--success); }
+        
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: 500; margin-bottom: 5px; }
+        input, select, textarea {
+            width: 100%; padding: 10px; border: 1px solid var(--border);
+            border-radius: 6px; font-family: inherit; font-size: 1rem; box-sizing: border-box;
+        }
+        .error-msg { color: var(--error); font-size: 0.85rem; margin-top: 4px; display: none; }
+        .error-msg.active { display: block; }
+        .input-error { border-color: var(--error); }
+
+        /* === BANNERS === */
+        .banner { padding: 15px; border-radius: 6px; margin-bottom: 20px; display: none; font-weight: 500; }
+        .banner.success { background: #dcfce7; color: #065f46; display: block; border: 1px solid #a7f3d0;}
+        .banner.error { background: #fee2e2; color: #991b1b; display: block; border: 1px solid #fecaca;}
+
+        footer { text-align: center; padding: 30px; color: var(--text-light); border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">Awesome Store</a>
+            <a href="#how-cod-works" class="nav-link">How COD Works</a>
+        </div>
+    </header>
+
+    <section class="hero container">
+        <h1>Exclusive Giveaway Collection</h1>
+        <p>Claim your limited edition apparel. Just pay for shipping on delivery!</p>
+        <a href="#order-form" class="btn">Order Now (₱0)</a>
+    </section>
+
+    <section class="container">
+        <div class="grid-3">
+            <div class="card">
+                <h3>🎁 Zero Cost</h3>
+                <p>The item price is currently set to ₱0 for this event.</p>
+            </div>
+            <div class="card">
+                <h3>🛡️ COD Available</h3>
+                <p>Pay only for handling/shipping when it arrives.</p>
+            </div>
+            <div class="card">
+                <h3>⭐ Premium Style</h3>
+                <p>Our top-tier apparel, now available for free.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-cod-works" class="container" style="background: #fff; border-radius: 8px; padding: 40px;">
+        <h2>How to Claim</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>1. Select Item</h3>
+                <p>Choose your style and set your quantity.</p>
+            </div>
+            <div class="card">
+                <h3>2. Enter Details</h3>
+                <p>Tell us where to send your package.</p>
+            </div>
+            <div class="card">
+                <h3>3. Pay Shipping</h3>
+                <p>Hand the shipping fee to the rider upon delivery.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="order-form" class="container">
+        <div class="form-section">
+            <h2>Claim Your Order</h2>
+            
+            <div id="banner-success" class="banner"></div>
+            <div id="banner-error" class="banner"></div>
+
+            <form id="codForm" novalidate>
+                <div class="summary-box">
+                    <h3>Order Summary</h3>
+                    <div class="form-group">
+                        <label for="product_variant">Apparel Style</label>
+                        <select id="product_variant">
+                            <option value="Shirt">Shirt</option>
+                            <option value="Polo">Polo</option>
+                            <option value="Basketball Jersey">Basketball Jersey</option>
+                            <option value="Volleyball Jersey">Volleyball Jersey</option>
+                            <option value="Long Sleeve">Long Sleeve</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity (₱0 each)</label>
+                        <input type="number" id="quantity" min="1" value="1">
+                    </div>
+                    <div class="summary-row">
+                        <span>Total Product Price:</span>
+                        <span id="summary-total">₱0</span>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--text-light); margin: 0;">* Standard shipping fees apply on delivery.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="customer_name">Full Name *</label>
+                    <input type="text" id="customer_name" placeholder="Juan Dela Cruz">
+                    <div class="error-msg" id="err-customer_name">Please enter your name.</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" placeholder="09XX XXX XXXX">
+                    <div class="error-msg" id="err-phone">Phone number is required.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email (Optional)</label>
+                    <input type="email" id="email" placeholder="email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Complete Address *</label>
+                    <textarea id="address" rows="2" placeholder="House/Unit No, Street, Barangay"></textarea>
+                    <div class="error-msg" id="err-address">Address is required.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City / Province *</label>
+                    <input type="text" id="city" placeholder="e.g. Makati City, Metro Manila">
+                    <div class="error-msg" id="err-city">City/Province is required.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country *</label>
+                    <input type="text" id="country" value="Philippines">
+                    <div class="error-msg" id="err-country">Country is required.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Delivery Instructions (Optional)</label>
+                    <input type="text" id="notes" placeholder="Gate color, landmarks, etc.">
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn" style="width: 100%;">Confirm Free Order</button>
+            </form>
+        </div>
+    </section>
+
+    <footer><p>&copy; 2026 Awesome Store | Limited Time Giveaway</p></footer>
+
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+        const SUPABASE_URL = "https://piamdqhxkkfvgvqlklhq.supabase.co";
+        const SUPABASE_KEY = "sb_publishable_2T4yg0IDR_Po7viI3A48ZQ_3kt47QZU";
+        const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // PRICE UPDATED TO ZERO
+        const PRICE_PER_UNIT = 0;
+
+        const form = document.getElementById('codForm');
+        const qtyInput = document.getElementById('quantity');
+        const totalDisp = document.getElementById('summary-total');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Logic remains to show total (which will always be 0)
+        qtyInput.addEventListener('input', () => {
+            const qty = Math.max(1, parseInt(qtyInput.value) || 1);
+            totalDisp.textContent = `₱${(qty * PRICE_PER_UNIT).toLocaleString()}`;
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Clean UI
+            document.querySelectorAll('.error-msg').forEach(m => m.classList.remove('active'));
+            document.querySelectorAll('input, textarea').forEach(i => i.classList.remove('input-error'));
+
+            let isValid = true;
+            const requiredFields = ['customer_name', 'phone', 'address', 'city', 'country'];
+            const formData = {
+                product_name: "Giveaway Apparel",
+                product_variant: document.getElementById('product_variant').value,
+                quantity: parseInt(qtyInput.value),
+                email: document.getElementById('email').value,
+                notes: document.getElementById('notes').value,
+                status: 'pending'
+            };
+
+            requiredFields.forEach(f => {
+                const el = document.getElementById(f);
+                if(!el.value.trim()) {
+                    document.getElementById(`err-${f}`).classList.add('active');
+                    el.classList.add('input-error');
+                    isValid = false;
+                }
+                formData[f] = el.value.trim();
+            });
+
+            if(!isValid) return;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Processing...";
+
+            try {
+                const { error } = await supabase.from('orders').insert([formData]);
+                if (error) throw error;
+                
+                document.getElementById('banner-success').textContent = "🎉 Order claimed! We will contact you soon.";
+                document.getElementById('banner-success').classList.add('success');
+                form.reset();
+                totalDisp.textContent = "₱0";
+            } catch (err) {
+                document.getElementById('banner-error').textContent = "System busy. Please try again later.";
+                document.getElementById('banner-error').classList.add('error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Confirm Free Order";
+            }
+        });
+    </script>
+</body>
+</html>
